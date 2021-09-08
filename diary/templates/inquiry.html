@@ -2,32 +2,34 @@
 
 {% block title %}お問い合わせ Private Diary{% endblock %}
 
-{% block contends %}
-<div class="container">
-    <div class="row">
-        <div class="my-div-style">
-            <from method="post">
-                {% csrf_token %}
+{% block contents %}
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="my-div-style">
+                <form method="post">
+                    {% csrf_token %}
 
-                {{form.non_field_errors}}
+                    {{form.non_field_errors}}
 
-                {% for field in from %}
-                  <div class="form-group row">
-                      <label for ="{{ field.id_for_lebel}}" class="col-sm-4 col-form-label">
-                          <strong>{{ field.label_tag }}</strong>
-                      </label>
-                      <div class="col-sm-8">
-                          {{ field }}
-                          {{ field.errors }}
-                      </div>
+                    {% for field in form %}
+                    <div class="form-group row">
+                        <label for="{{ field.id_for_lebel}}" class="col-sm-4 col-form-label">
+                            <strong>{{ field.label_tag }}</strong>
+                        </label>
+                        <div class="col-sm-8">
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
 
-                <div class="offset-sm-4 col-sm-8">
-                    <button class="btn btn-primary" type="submit">送信</button>
+                    <div class="offset-sm-4 col-sm-8">
+                        <button class="btn btn-primary" type="submit">送信</button>
+                    </div>
+                </form>
             </div>
-          </from>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

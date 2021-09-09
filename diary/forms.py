@@ -25,9 +25,9 @@ class InquiryForm(forms.Form):
     def send_email(self):
       name = self.cleaned_data['name']
       email = self.cleaned_data['email']
-      tital = self.cleaned_data['tital']
+      title = self.cleaned_data['title']
       message = self.cleaned_data['message']
-      subject = 'お問い合わせ{}'.format(tital)
+      subject = 'お問い合わせ{}'.format(title)
       message = '送信者名:{0}\nメールアドレス:{1}\nメッセージ:{2}'.format(name, email, message)
       from_email = 'admin@example.com'
       to_list = [

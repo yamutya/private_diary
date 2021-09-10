@@ -142,7 +142,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ACCOUNT_AUTHENTCATION = 'email'
+ACCOUNT_AUTHENTCATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 
 

@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x1#p(3@*2r+#fplrk)iq2wm%+t@2w@*n-rj@x-twr6shsg#y5j'
+SECRET_KEY = '&w*irnu(@oe$af=oj-&)-u+_=*bl255&mp$e13tqpznikmqw!^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'Asia/TOKYO'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -125,36 +125,53 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR,'static'),
 )
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND= 'django.core.mail.backends.console.EmailBackend'
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'alert alert-danger',
+    messages.WARNING: 'alert alert-warning',
+    messages.SUCCESS: 'alert alert-success',
+    messages.INFO: 'alert alert-info',
+}
+
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-SITE__ID = 1
+SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ACCOUNT_AUTHENTCATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
-
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
+LOGIN_REDIRECT_URL = 'diary:index'
+ACCOUNT_LOGOUT_REDIRECT_URL =  'account_login'
 
-# LOGIN_REDIRECT_URL = 'diary:index'
-# ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+ACCOUNT_LOGOUT_ON_GET = True
 
-# ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
-# ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+DEFAULT_FROM_EMAIL = 'admin@example.com'
 
-# DEFAULT_FROM_EMAIL = 'admin@example.com'
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'madia')
+
+MEDIA_URL = '/media/'
+
+LOGIN_REDDIRECT_URL = 'diary:diary_list'
